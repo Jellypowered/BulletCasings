@@ -1,13 +1,7 @@
 ﻿using HarmonyLib;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using UnityEngine;
-using RimWorld;
-using Verse;
-using Verse.AI;
 using System.Reflection;
+using UnityEngine;
+using Verse;
 
 namespace BulletCasingMote
 {
@@ -33,7 +27,7 @@ namespace BulletCasingMote
                 listing_Standard.CheckboxLabeled("BulletCasingUseWeaponRotation".Translate(), ref BulletCasingMoteSettings.useWeaponRotation, ("BulletCasingUseWeaponRotationTooltip".Translate()));
                 listing_Standard.LabelHighlight("BulletCasingVelocityFactor".Translate(), tooltip: "BulletCasingVelocityFactorTooltip".Translate());
                 listing_Standard.IntRange(ref BulletCasingMoteSettings.velocityFactor, 1, 10);
-                if(BulletCasingMoteSettings.velocityFactor.min < 1)
+                if (BulletCasingMoteSettings.velocityFactor.min < 1)
                 {
                     BulletCasingMoteSettings.velocityFactor.min = 1;
                 }

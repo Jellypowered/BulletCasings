@@ -1,13 +1,8 @@
 ﻿using HarmonyLib;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using UnityEngine;
 using RimWorld;
+using System;
+using UnityEngine;
 using Verse;
-using Verse.AI;
-using System.Reflection;
 
 namespace BulletCasingMote
 {
@@ -17,7 +12,7 @@ namespace BulletCasingMote
         [HarmonyPostfix]
         public static void TryCastNextBurstShot_Postfix(Verb __instance)
         {
-            if (__instance?.verbProps != null && __instance.EquipmentSource != null &&__instance.verbProps.muzzleFlashScale > 0.01f && __instance.verbProps.verbClass != typeof(Verb_ShootOneUse))
+            if (__instance?.verbProps != null && __instance.EquipmentSource != null && __instance.verbProps.muzzleFlashScale > 0.01f && __instance.verbProps.verbClass != typeof(Verb_ShootOneUse))
             {
                 if (__instance.CasterPawn != null && __instance.GetProjectile()?.projectile != null && __instance.CasterIsPawn)
                 {
@@ -46,7 +41,7 @@ namespace BulletCasingMote
                 {
                     ThrowCasingTurret(__instance.caster, __instance.caster.Map, __instance.GetProjectile().projectile.GetDamageAmount(1f), BulletCasingMoteDefOf.Mote_BulletCasing);
                 }
-            } 
+            }
         }
 
         public static Mote ThrowCasing(Pawn caster, Map map, int weaponDamage, ThingDef moteDef)
@@ -64,7 +59,7 @@ namespace BulletCasingMote
             else
             {
                 moteThrown.Scale = GenMath.LerpDoubleClamped(5f, 30f, 0.2f, 0.4f, weaponDamage);
-            } 
+            }
             moteThrown.exactPosition = caster.Position.ToVector3Shifted();
             moteThrown.exactPosition += Quaternion.AngleAxis(angle, Vector3.up) * new Vector3(0f, 0f, 0.3f); //puts the casing slightly infront of the pawn
             moteThrown.rotationRate = Rand.Range(-360f, 360f);
@@ -83,7 +78,7 @@ namespace BulletCasingMote
             }
             Building_TurretGun turret = caster as Building_TurretGun;
             TurretTop turrettop = Traverse.Create(turret).Field("top").GetValue<TurretTop>();
-            
+
             float angle = Traverse.Create(turrettop).Field("curRotationInt").GetValue<float>();
             MoteThrownCasing moteThrown = (MoteThrownCasing)ThingMaker.MakeThing(moteDef, null);
             if (BulletCasingMoteSettings.uncapCasingSize)

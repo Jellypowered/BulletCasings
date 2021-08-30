@@ -1,11 +1,4 @@
-﻿using HarmonyLib;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Reflection;
-using RimWorld;
-using Verse;
+﻿using Verse;
 
 namespace BulletCasingMote
 {
@@ -13,7 +6,7 @@ namespace BulletCasingMote
     {
         public static bool filth;
         public static bool useWeaponRotation;
-        public static IntRange velocityFactor = new IntRange (2, 3);
+        public static IntRange velocityFactor = new IntRange(2, 3);
         public static bool uncapCasingSize;
         public static float var1;
         public static float var2;
